@@ -1,8 +1,10 @@
-set term pngcairo size 800,500
+set term pngcairo size 1300,800
 set output 'img/vis.png'
 set key right outside
 set grid
 set title 'Test datadrop from temperature sensor'
 set ylabel 'temperature [deg C]'
 set xlabel 'time [100ms]'
-plot 'data/datadrop.dat' u 0:1 with lines notit lc rgb '#fc8d62'
+stats 'data/datadrop.dat' using 0 nooutput
+set xrange [0:STATS_max]
+plot 'data/datadrop.dat' u 0:1 with lines notit lc rgb 'gray', 'data/datadrop.dat' u ($0-10):($2) with lines notit lc rgb 'red'

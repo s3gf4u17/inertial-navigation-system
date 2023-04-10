@@ -4,7 +4,7 @@ default:
 	cd build && make
 
 test:
-	g++ test.c
+	g++ test/movevalues.c
 	@clear && ./a.out
 
 datadrop:
@@ -13,3 +13,9 @@ datadrop:
 
 plot:
 	gnuplot < test/plot.gpl
+
+download:
+	sudo apt install cmake gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib
+	rm -rf ~/pico-sdk/
+	git clone -b master https://github.com/raspberrypi/pico-sdk ~/pico-sdk/
+	cd ~/pico-sdk/ && git submodule update --init
